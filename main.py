@@ -10,13 +10,14 @@ def get_random_question(used_questions):
         data = json.load(f)
     available_questions = [q for q in data if json.dumps(q) not in used_questions]
     if not available_questions:
-        print("all qustions was qusiut")
+        print("כל התשובות נענו")
         return None
     random_question = random.choice(available_questions)
     used_questions.add(json.dumps(random_question))
     return random_question
 
 def main(player, all_dict_question, set_of_wrong_answers):
+    print(player.name,",תורך")
     print(all_dict_question['question'])
     print("תשובות שגויות", set_of_wrong_answers)
     print(all_dict_question['options'])
@@ -41,6 +42,7 @@ all_dict_question = get_random_question(used_questions)
 set_of_wrong_answers = set()
 while all_dict_question:
     for i in players:
+        print("")
         MAIN = main(i, all_dict_question, set_of_wrong_answers)
         if MAIN == "great answer":
             all_dict_question = get_random_question(used_questions)
